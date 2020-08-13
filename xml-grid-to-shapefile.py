@@ -2,8 +2,6 @@ import geopandas as gpd
 from shapely.geometry import Point
 
 # define function
-
-
 def xml_grid_to_shapefile(xml_grid, output_directory, convex_hull=False, pga_threshold=0):
     with open(xml_grid) as xml:
         lines = xml.read()
