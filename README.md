@@ -24,5 +24,7 @@ output_directory = r'C:\projects\NEIC\shapefiles\EXAMPLE'
 gdf = xml_grid_to_shapefile(xml_grid, output_directory)
 ```
 
-3. If you have hazpy installed, double click on run-with-hazpy.py
-4. If you do **not** have hazpy installed, you will need to open a terminal, activate a python virtual environment that contains the package dependecies, then run xml-grid-to-shapefile.py
+3. Run the script
+
+- If you have hazpy installed, double click on run-with-hazpy.py
+- If you do not have hazpy installed, you will need to open a terminal, activate a python virtual environment that contains the package dependecies, then run xml-grid-to-shapefile.py
