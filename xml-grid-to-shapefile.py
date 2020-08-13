@@ -2,6 +2,8 @@ import geopandas as gpd
 from shapely.geometry import Point
 
 # define function
+
+
 def xml_grid_to_shapefile(xml_grid, output_directory, convex_hull=False, pga_threshold=0):
     with open(xml_grid) as xml:
         lines = xml.read()
@@ -29,14 +31,11 @@ def xml_grid_to_shapefile(xml_grid, output_directory, convex_hull=False, pga_thr
             ch = gdf.unary_union.convex_hull
             gdf = gpd.GeoDataFrame(geometry=gpd.GeoSeries(ch))
         if '.shp' not in output_directory:
-            output_file_name = xml.name.split('.')[0] + '.shp'
-            gdf.to_file(output_directory + '/' +
-                        output_file_name, driver='ESRI Shapefile')
-            print('Success! Output saved at ' +
-                  output_directory + '/' + output_file_name)
-        else:
-            gdf.to_file(output_directory, driver='ESRI Shapefile')
-            print('Success! Output saved at ' + output_directory)
+            if not output_directory.endswith('/'):
+                output_directory = output_directory + '/'
+            output_directory = output_directory + 'output_grid.shp'
+        gdf.to_file(output_directory, driver='ESRI Shapefile')
+        print('Success! Output saved at ' + output_directory)
 
 
 def xml_grid_to_gdf(xml_grid, convex_hull=False, pga_threshold=0):
@@ -69,8 +68,8 @@ def xml_grid_to_gdf(xml_grid, convex_hull=False, pga_threshold=0):
 
 
 # specify the inputs
-xml_grid = 'anna_grid.xml'
-output_directory = r'C:\projects\Colab\NEIC\TwoPAGER\Indiana5\shapefiles'
+xml_grid = r'C:\projects\NEIC\TwoPAGER\EXAMPLE_GRID.xml'
+output_directory = r'C:\projects\NEIC\TwoPAGER\EXAMPLE_SHAPEFILE.shp'
 
 # run the function
 gdf = xml_grid_to_shapefile(xml_grid, output_directory)
